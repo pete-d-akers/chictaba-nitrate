@@ -1,6 +1,6 @@
 # chictaba-nitrate
-This repository contains the R scripts for analyzing and plotting the nitrate (NO3-) data from the CHICTABA traverse, Antarctica.
-The script uses data from three CSV files, available both here and also on PANGAEA database (permanent links to come).
+This repository contains the R script for analyzing and plotting the nitrate (NO3-) data from the CHICTABA traverse, Antarctica.
+The script uses data from four CSV files, available both here and also on PANGAEA database (permanent links to come).
 
 Units and column information for:  
 chictaba_NO3data.csv  
@@ -24,15 +24,33 @@ D17Oerr: Standrad error of Δ17O calculations.
 d15Nerr: Standard error of δ15N measurements.  
 group: Sampling method/origin group, as pits (p1–p5), skin layer (skl) or 1 m depth layer (dl).  
 site: Name of stop along CHICTABA route where samples were taken.  
-smb: Surface mass balance in kg m-2 a-1 output from from MAR regional climate model version 3.6.4 using ERA-Interim data 1979-2017.  
 pseudo: 1 = the row of data is a "pseudo" sample duplicated or extrapolated from other samples for analytical and/or plotting purposes.  
+smb.1979_2021: Surface mass balance in kg m-2 a-1 output from from MAR regional climate model version 3.12.1 using ERA5 data, 1979–2021 mean.  
+smb.1979_2021.mean.ci: 95% confidence interval of the mean SMB calculated from each annual SMB from 1979–2021.
+smb.1979_2021.MARavgerr: Mean error of annual SMB estimated by comparing MARv3.12.1 SMB output to in situ SMB observations for 1979–2021.
+smb.2011_2013: Surface mass balance in kg m-2 a-1 output from from MAR regional climate model version 3.12.1 using ERA5 data, 2011–2013 mean.  
+smb.2011_2013.mean.ci: 95% confidence interval of the mean SMB calculated from each annual SMB from 2011–2013.
+smb.2011_2013.MARavgerr: Mean error of annual SMB estimated by comparing MARv3.12.1 SMB output to in situ SMB observations for 2011–2013.
+smb.2013: Surface mass balance in kg m-2 a-1 output from from MAR regional climate model version 3.12.1 using ERA5 data, 2013 alone.  
+smb.2013.MARavgerr: Mean error of annual SMB estimated by comparing MARv3.12.1 SMB output to in situ SMB observations for 2013 alone.
 
 chictaba_rema_profile.csv  
 distance.km: Distance along CHICTABA transect, in km.  
-plot.dist.mean: Mean of distance.km of same row + following row, used for accurate stepped line plotting.  
+plot.dist.mean: Mean of distance.km of same row + previous row, used for accurate stepped line plotting.  
 elevation.rema: Elevation, in m above sea level, at listed distance along CHICTABA. Data extracted from the Reference Elevation Model of Antarctica (https://www.pgc.umn.edu/data/rema/) with QGIS.  
 
 chictaba_SMBMAR_profile.csv  
 distance.km: Distance along CHICTABA transect, in km.  
-plot.dist.mean: Mean of distance.km of same row + following row, used for accurate stepped line plotting.  
-smb.mar: Surface mass balance in kg m-2 a-1 output from from MAR regional climate model version 3.6.4 using ERA-Interim data 1979-2017. Data extracted using QGIS.  
+plot.dist.mean: Mean of distance.km of same row + previous row, used for accurate stepped line plotting.  
+smb.mar.1979_2021: Surface mass balance in kg m-2 a-1 output from from MAR regional climate model version 3.12.1 using ERA5 data, 1979–2021 mean. Data extracted using QGIS.
+smb.mar.error.1979_2021: Mean error of annual SMB estimated by comparing MARv3.12.1 SMB output to in situ SMB observations for 1979–2021. Data extracted using QGIS.
+smb.mar.2011_2013: Surface mass balance in kg m-2 a-1 output from from MAR regional climate model version 3.12.1 using ERA5 data, 2011–2013 mean. Data extracted using QGIS.
+smb.mar.error.2011_2013: Mean error of annual SMB estimated by comparing MARv3.12.1 SMB output to in situ SMB observations for 2011–2013. Data extracted using QGIS.
+smb.mar.2013: Surface mass balance in kg m-2 a-1 output from from MAR regional climate model version 3.12.1 using ERA5 data, 2013 alone. Data extracted using QGIS.
+smb.mar.error.2013: Mean error of annual SMB estimated by comparing MARv3.12.1 SMB output to in situ SMB observations for 2013 alone. Data extracted using QGIS.
+
+chictaba_SMBMAR_profile_allyears.csv  
+distance.km: Distance along CHICTABA transect, in km.  
+plot.dist.mean: Mean of distance.km of same row + previous row, used for accurate stepped line plotting.  
+Remaining columns: Surface mass balance in kg m-2 a-1 output from from MAR regional climate model version 3.12.1 using ERA5 data, each column representing one year of accumulation from 1979 through 2021. Data extracted using QGIS.
+
