@@ -101,11 +101,6 @@ pit.site.index <- c("CHIC-01.p1", "CHIC-05.p2", "CHIC-11.p3", "ABN.p4", "ABN.p5"
 chic.pit$site <- factor(chic.pit$site, levels=pit.site.index)
 chic.bypit <- split(chic.pit, f=chic.pit$site) # Making a list where each pit is separated out as a dataframe
 
-chic.skd <- chic[chic$group == "skl" | chic$group == "dl",] # skd = skin layer + depth layer
-chic.skd$group <- factor(chic.skd$group, levels=c("dl", "skl")) # Making it so the order is always correctly displayed
-chic.byskd <- split(chic.skd, f=chic.skd$site) # Making a list where each unique site is separated out a dataframe
-chic.byskd <- chic.byskd[lapply(chic.byskd, nrow) > 1] # Keeping only sites that have both a skin layer and depth layer sample
-
 # Making an alternate dataframe that excludes the SKL pseudo data (ie, the duplicate and extrapolated data)
   # The skin layer sample for P2-P5 were duplicated for simpler analysis from the skin layer sample taken at the same site.
   # There was no skin layer sample taken at CHIC-01 site for P1, so it was extrapolated based on the relationship between
@@ -116,6 +111,11 @@ chic.byskd <- chic.byskd[lapply(chic.byskd, nrow) > 1] # Keeping only sites that
   # Statistical analyses proceed on data with pseudo values removed.
 chic.no.pseudo <- chic[!(chic$pseudo == 1),] # For analyses with all pseudo removed
 chic.no.pseudo.dl <- chic[!(chic$pseudo == 1 & chic$group != "dl"),] # For analyses when pseudo dl samples are included
+
+chic.skd <- chic.no.pseudo.dl[chic.no.pseudo.dl$group == "skl" | chic.no.pseudo.dl$group == "dl",] # skd = skin layer + depth layer
+chic.skd$group <- factor(chic.skd$group, levels=c("dl", "skl")) # Making it so the order is always correctly displayed
+chic.byskd <- split(chic.skd, f=chic.skd$site) # Making a list where each unique site is separated out a dataframe
+chic.byskd <- chic.byskd[lapply(chic.byskd, nrow) > 1] # Keeping only sites that have both a skin layer and depth layer sample
 
 # Setting plotting and analysis variables
 vbl.clm <- c("NO3", "d18O", "D17O", "d15N") # columns with plotting data
@@ -305,25 +305,25 @@ for (i in 1:length(vbl.clm.index)) {
   skl.lm.stats.1979_2021[i,1] <- names(skl)[vbl.clm.index[i]]
   skl.lm.stats.1979_2021[i,2] <- skl.lmstat.inv.1979_2021[[i]]$coefficients[2]
   skl.lm.stats.1979_2021[i,3] <- skl.lmstat.inv.1979_2021[[i]]$coefficients[4]
-  skl.lm.stats.1979_2021[i,4] <- skl.lmstat.inv.1979_2021[[i]]$coefficients[8]
-  skl.lm.stats.1979_2021[i,5] <- skl.lmstat.inv.1979_2021[[i]]$coefficients[1]
-  skl.lm.stats.1979_2021[i,6] <- skl.lmstat.inv.1979_2021[[i]]$coefficients[3]
+  skl.lm.stats.1979_2021[i,4] <- skl.lmstat.inv.1979_2021[[i]]$coefficients[1]
+  skl.lm.stats.1979_2021[i,5] <- skl.lmstat.inv.1979_2021[[i]]$coefficients[3]
+  skl.lm.stats.1979_2021[i,6] <- skl.lmstat.inv.1979_2021[[i]]$coefficients[8]
   skl.lm.stats.1979_2021[i,7] <- skl.lmstat.inv.1979_2021[[i]]$r.squared
   
   skl.lm.stats.2011_2013[i,1] <- names(skl)[vbl.clm.index[i]]
   skl.lm.stats.2011_2013[i,2] <- skl.lmstat.inv.2011_2013[[i]]$coefficients[2]
   skl.lm.stats.2011_2013[i,3] <- skl.lmstat.inv.2011_2013[[i]]$coefficients[4]
-  skl.lm.stats.2011_2013[i,4] <- skl.lmstat.inv.2011_2013[[i]]$coefficients[8]
-  skl.lm.stats.2011_2013[i,5] <- skl.lmstat.inv.2011_2013[[i]]$coefficients[1]
-  skl.lm.stats.2011_2013[i,6] <- skl.lmstat.inv.2011_2013[[i]]$coefficients[3]
+  skl.lm.stats.2011_2013[i,4] <- skl.lmstat.inv.2011_2013[[i]]$coefficients[1]
+  skl.lm.stats.2011_2013[i,5] <- skl.lmstat.inv.2011_2013[[i]]$coefficients[3]
+  skl.lm.stats.2011_2013[i,6] <- skl.lmstat.inv.2011_2013[[i]]$coefficients[8]
   skl.lm.stats.2011_2013[i,7] <- skl.lmstat.inv.2011_2013[[i]]$r.squared
   
   skl.lm.stats.2013[i,1] <- names(skl)[vbl.clm.index[i]]
   skl.lm.stats.2013[i,2] <- skl.lmstat.inv.2013[[i]]$coefficients[2]
   skl.lm.stats.2013[i,3] <- skl.lmstat.inv.2013[[i]]$coefficients[4]
-  skl.lm.stats.2013[i,4] <- skl.lmstat.inv.2013[[i]]$coefficients[8]
-  skl.lm.stats.2013[i,5] <- skl.lmstat.inv.2013[[i]]$coefficients[1]
-  skl.lm.stats.2013[i,6] <- skl.lmstat.inv.2013[[i]]$coefficients[3]
+  skl.lm.stats.2013[i,4] <- skl.lmstat.inv.2013[[i]]$coefficients[1]
+  skl.lm.stats.2013[i,5] <- skl.lmstat.inv.2013[[i]]$coefficients[3]
+  skl.lm.stats.2013[i,6] <- skl.lmstat.inv.2013[[i]]$coefficients[8]
   skl.lm.stats.2013[i,7] <- skl.lmstat.inv.2013[[i]]$r.squared
   
   # Depth layer regressions with SMB
@@ -390,12 +390,12 @@ colnames(skl.lm.stats.2011_2013) <- c("var", "slope", "slope.se", "intercept", "
 colnames(dl.lm.stats.2011_2013) <- c("var", "slope", "slope.se", "intercept", "intercept.se", "p.value", "r2")
 colnames(skl.lm.stats.2013) <- c("var", "slope", "slope.se", "intercept", "intercept.se", "p.value", "r2")
 colnames(dl.lm.stats.2013) <- c("var", "slope", "slope.se", "intercept", "intercept.se", "p.value", "r2")
-skl.lm.stats.1979_2021[2:7] <- signif(skl.lm.stats.1979_2021[2:7],2)
-dl.lm.stats.1979_2021[2:7] <-  signif(dl.lm.stats.1979_2021[2:7],2)
-skl.lm.stats.2011_2013[2:7] <-  signif(skl.lm.stats.2011_2013[2:7],2)
-dl.lm.stats.2011_2013[2:7] <-  signif(dl.lm.stats.2011_2013[2:7],2)
-skl.lm.stats.2013[2:7] <-  signif(skl.lm.stats.2013[2:7],2)
-dl.lm.stats.2013[2:7] <-  signif(dl.lm.stats.2013[2:7],2)
+skl.lm.stats.1979_2021[2:7] <- format(signif(skl.lm.stats.1979_2021[2:7],2), scientific=FALSE)
+dl.lm.stats.1979_2021[2:7] <-  format(signif(dl.lm.stats.1979_2021[2:7],2), scientific=FALSE)
+skl.lm.stats.2011_2013[2:7] <-  format(signif(skl.lm.stats.2011_2013[2:7],2), scientific=FALSE)
+dl.lm.stats.2011_2013[2:7] <-  format(signif(dl.lm.stats.2011_2013[2:7],2), scientific=FALSE)
+skl.lm.stats.2013[2:7] <-  format(signif(skl.lm.stats.2013[2:7],2), scientific=FALSE)
+dl.lm.stats.2013[2:7] <-  format(signif(dl.lm.stats.2013[2:7],2), scientific=FALSE)
 smb.lm.stats <- list(skl.lm.stats.1979_2021, skl.lm.stats.2011_2013, skl.lm.stats.2013,
                        dl.lm.stats.1979_2021, dl.lm.stats.2011_2013, dl.lm.stats.2013)
 names(smb.lm.stats) <- c("skl.1979_2021", "skl.2011_2013", "skl.2013", "dl.1979_2021", "dl.2011_2013", "dl.2013")
