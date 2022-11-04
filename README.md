@@ -3,7 +3,7 @@ This repository contains the R script for analyzing and plotting the nitrate (NO
 The script uses data from four CSV files, available both here and also on PANGAEA database at https://doi.org/10.1594/PANGAEA.948355.  
 
 Units and column information for:  
-chictaba_NO3data.csv  
+chictaba_alldata.csv  
 Nitrate samples were originally collected as 0.2–1.5 kg snow samples in the field along the CHICTABA traverse, Antarctica. Snow was collected in three methods: snow pits, skin layer, and 1 m depth layer. For snow pits, snow was collected in increments of 3 cm thick layers. Skin layer samples were collected as the loose snow grains 2–6 mm deep on the surface. The 1 m depth layer samples were taken as a 5–10 cm thick layer surrounding 1 m depth, which was then thoroughly mixed. Samples were melted and nitrate concentrated with a ion exchange resin at Concordia Station, Antarctica. Isotopic analysis performed with MAT253 mass spectrometer at IGE, Grenoble, France.  
 
 id: The unique sample identifier for each NO3- sample.  
