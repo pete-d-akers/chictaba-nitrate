@@ -1,6 +1,6 @@
 # chictaba-nitrate
 This repository contains the R script for analyzing and plotting the nitrate (NO3-) data from the CHICTABA traverse, Antarctica.  
-The script uses data from four CSV files, available both here and also on PANGAEA database (permanent links to come).  
+The script uses data from four CSV files, available both here and also on PANGAEA database at https://doi.org/10.1594/PANGAEA.948355.  
 
 Units and column information for:  
 chictaba_NO3data.csv  
